@@ -96,6 +96,7 @@ export default {
     }
 
     if (interaction.options.getSubcommand() === 'tiempo') {
+      await interaction.deferReply({ ephemeral: false });
       const time = interaction.options.getNumber('tiempo');
       await halloweenLocal.updateOne({ server_id: interaction.guild.id }, { $set: { time_catch: time * 1000 } });
       embed.setDescription(`Se ha establecido el tiempo de captura en **${time} seg.**`);
